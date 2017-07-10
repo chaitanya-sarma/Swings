@@ -1,0 +1,39 @@
+import java.awt.BorderLayout;
+import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextPane;
+
+public class MainFrame extends JFrame implements ActionListener {
+
+	CustomTextPanel textPanel;
+	CustomToolbar toolbar;
+	JButton button;
+	public MainFrame(String title) throws HeadlessException {
+		super(title);
+		
+		textPanel = new CustomTextPanel();
+		button = new JButton("click Me!!");
+		toolbar = new CustomToolbar();
+		
+		setLayout(new BorderLayout());
+		setSize(600, 500);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		setVisible(true);
+		
+		add(textPanel, BorderLayout.CENTER);
+		add(button, BorderLayout.SOUTH);
+		add(toolbar, BorderLayout.NORTH);
+		
+		button.addActionListener(this);
+	}
+
+	public void actionPerformed(ActionEvent arg0) {
+		textPanel.convertToUpper();
+	}
+}
