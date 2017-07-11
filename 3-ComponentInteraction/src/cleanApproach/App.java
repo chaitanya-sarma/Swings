@@ -1,3 +1,5 @@
+package cleanApproach;
+
 import javax.swing.SwingUtilities;
 
 public class App {

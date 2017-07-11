@@ -1,0 +1,11 @@
+There are two ways we can have interaction between the components.
+Not Clean Way:
+		•	Define a textpanel in toolbar and link this to the customTextPanel.
+		•	Now implement the actionPerformed in the component customToolbar.
+		•	Issue: Things are very tightly coupled. Toolbar knows about the textpanel.
+		
+Clean Way:
+		•	Define an interface and have the toolbar have a member of this interface.
+		•	Now when we define a component toolbar in our main controller we can implement the method of inteface
+			at the object toolbar level.
+		•	This avoids the need for toolbar to know about the textPanel.

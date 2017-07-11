@@ -1,5 +1,4 @@
-
-
+package cleanApproach;
 import java.awt.BorderLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
@@ -29,6 +28,17 @@ public class MainFrame extends JFrame implements ActionListener {
 		add(button, BorderLayout.SOUTH);
 		add(toolbar, BorderLayout.NORTH);
  
+		//*****************************************Clean implementation ************************************
+				toolbar.setStringListener(new StringListener() {
+					
+					@Override
+					public void textEmitted(String text) {
+						textPanel.appendText(text);
+					}
+				});
+		//****************************************************************************************************
+				
+		
 		button.addActionListener(this);
 	}
 
