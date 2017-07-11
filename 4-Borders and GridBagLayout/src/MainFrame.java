@@ -41,7 +41,14 @@ public class MainFrame extends JFrame implements ActionListener {
 				});
 		//****************************************************************************************************
 				
-		
+		formPanel.setFormListener(new FormListener() {
+			
+			@Override
+			public void formEventOccured(FormEvent fe) {
+				textPanel.appendText("Hello"+fe.getName()+"  "+fe.getOccu()+"\n");
+			} 
+		});
+				
 		button.addActionListener(this);
 	}
 

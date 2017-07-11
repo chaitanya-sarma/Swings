@@ -3,6 +3,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -12,12 +14,12 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
-public class FormPanel extends JPanel {
+public class FormPanel extends JPanel implements ActionListener {
 
 	private JLabel nameLabel, occLabel;
 	private JTextField nameField, occField;
 	private JButton okBtn;
-
+	private FormListener fl;
 	public FormPanel(String title) {
 
 		nameLabel = new JLabel("Name:");
@@ -34,6 +36,7 @@ public class FormPanel extends JPanel {
 		setBorder(BorderFactory.createCompoundBorder(outer, inner));
 
 		addComponents();
+		okBtn.addActionListener(this);
 	}
 
 	private void addComponents() {
@@ -86,6 +89,19 @@ public class FormPanel extends JPanel {
 		gc.anchor = GridBagConstraints.FIRST_LINE_START;
 		add(okBtn, gc);
 
+	}
+	
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String nam = nameField.getText();
+		String occ = occField.getText();
+		FormEvent fe = new FormEvent(nam, occ);
+		fl.formEventOccured(fe);
+	}
+
+	public void setFormListener(FormListener formListener) {
+		fl = formListener;
 	}
 
 }
