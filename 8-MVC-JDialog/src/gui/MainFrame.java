@@ -25,8 +25,10 @@ public class MainFrame extends JFrame implements ActionListener {
 	private CustomToolbar toolbar;
 	private FormPanel formPanel;
 	private JButton button;
-	private JFileChooser fileChooser; 
+	private JFileChooser fileChooser;
 	private Controller controller;
+	private PrefDialog pref;
+
 	public MainFrame(String title) throws HeadlessException {
 		super(title);
 
@@ -37,7 +39,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		fileChooser = new JFileChooser();
 		fileChooser.addChoosableFileFilter(new PersonFilter());
 		controller = new Controller();
-		
+		pref = new PrefDialog(this);
 		setLayout(new BorderLayout());
 		setSize(600, 500);
 		setMinimumSize(new Dimension(500, 400));
@@ -78,13 +80,13 @@ public class MainFrame extends JFrame implements ActionListener {
 		JMenu fileMenu = new JMenu("File");
 		JMenuItem importData = new JMenuItem("Import");
 		importData.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(fileChooser.showOpenDialog(MainFrame.this) == JFileChooser.APPROVE_OPTION){
-					textPanel.appendText("\n"+fileChooser.getSelectedFile());
+				if (fileChooser.showOpenDialog(MainFrame.this) == JFileChooser.APPROVE_OPTION) {
+					textPanel.appendText("\n" + fileChooser.getSelectedFile());
 				}
-				
+
 			}
 		});
 		JMenuItem exportData = new JMenuItem("Export");
@@ -110,6 +112,14 @@ public class MainFrame extends JFrame implements ActionListener {
 
 		JMenu windowMenu = new JMenu("Window");
 		JMenu show = new JMenu("Show");
+		JMenuItem prefDialog = new JMenuItem("PrefDialog");
+		prefDialog.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				pref.setVisible(true);
+			}
+		});
 		JCheckBoxMenuItem personForm = new JCheckBoxMenuItem("Person Form");
 		personForm.setSelected(true);
 		personForm.addActionListener(new ActionListener() {
@@ -122,6 +132,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
 		windowMenu.add(show);
 		show.add(personForm);
+		show.add(prefDialog);
 		menu.add(windowMenu);
 		return menu;
 	}
