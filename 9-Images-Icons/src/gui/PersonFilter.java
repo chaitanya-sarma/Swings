@@ -1,3 +1,4 @@
+package gui;
 import java.io.File;
 
 import javax.swing.filechooser.FileFilter;
@@ -13,11 +14,12 @@ public class PersonFilter extends FileFilter{
 		if(lastIndex == -1 || lastIndex == name.length()-1)
 		return false;
 		
-		else
+		else{
 			if(name.substring(lastIndex+1, name.length()-1) == "jpeg")
 				return true;
 			else 
 				return false;
+		}
 	}
 
 	@Override
